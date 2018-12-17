@@ -1,9 +1,12 @@
 plugins {
     id 'java'
+    id 'maven'
+    id 'signing'
+
 }
 
 group 'com.github.glistman'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 sourceCompatibility = 1.8
 
@@ -11,6 +14,77 @@ repositories {
     mavenCentral()
 }
 
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task printProps {
+    doLast {
+        println ossrhUsername
+        println ossrhPassword
+        println System.properties['system']
+    }
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Text Utilities'
+                packaging 'jar'
+                description 'utilities to analyze, manipulate and format strings'
+                url 'https://github.com/glistman/text'
+
+                scm {
+                    connection 'scm:git:git@github.com:glistman/text.git'
+                    developerConnection 'scm:git:git@github.com:glistman/text.git'
+                    url 'https://github.com/glistman/text'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'glistman'
+                        name 'Listman Gamboa'
+                        email 'listman2390@gmail.com'
+                    }
+                }
+            }
+        }
+    }
 }

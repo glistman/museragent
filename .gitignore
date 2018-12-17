@@ -2,15 +2,13 @@
 *.class
 .idea
 .gradle
+gradle.properties
 
 # Log file
 *.log
 
 # BlueJ files
 *.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
 # Package Files #
 *.jar
