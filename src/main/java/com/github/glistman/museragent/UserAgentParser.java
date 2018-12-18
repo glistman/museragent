@@ -34,8 +34,8 @@ public class UserAgentParser {
             String device = deviceDataMatcher.group("device");
             String type = deviceDataMatcher.group("type");
             userAgent = new UserAgent(
-                    deviceDataMatcher.group("os"),
-                    deviceDataMatcher.group("osVersion"),
+                    deviceDataMatcher.group("os").trim(),
+                    deviceDataMatcher.group("osVersion").trim(),
                     parseDeviceManufacturer(device, type),
                     parseDevice(device, type),
                     userAgentRaw);
@@ -53,7 +53,7 @@ public class UserAgentParser {
             deviceName = type;
         }
 
-        return deviceName;
+        return deviceName.trim();
     }
 
     private String parseDeviceManufacturer(String device, String type) {
@@ -66,6 +66,17 @@ public class UserAgentParser {
         }
 
         return manufacturer;
+    }
+
+    public static void main(String... args) {
+        UserAgentParser userAgentParser= new UserAgentParser();
+        UserAgent userAgent = userAgentParser.parse("Dalvik/2.1.0 (Linux; U; Android 7.1.1; moto x4 Build/NPW26.83-41)");
+        System.out.println(userAgent.getOperatingSystem());
+        System.out.println(userAgent.getOperatingSystemVersion());
+        System.out.println(userAgent.getDeviceVendor());
+        System.out.println(userAgent.getDeviceModel());
+        System.out.println(userAgent.isMobile());
+        System.out.println(userAgent.getUserAgentRaw());
     }
 
 }
