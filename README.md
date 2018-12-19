@@ -1,6 +1,5 @@
-Mobil User Agent Parser
+Mobil User Agent Parser [![Build Status](https://travis-ci.org/glistman/museragent.svg?branch=master)](https://travis-ci.org/glistman/museragent) [![Maven Central](https://img.shields.io/maven-central/v/com.github.glistman/museragent.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.glistman%22%20AND%20a:%22museragent%22) 
 ======================
-
 
 ## Getting Started
 
@@ -8,18 +7,18 @@ To get started, you can add museragent as a dependency in your project:
 
 * sbt
   ```scala
-  libraryDependencies += "com.github.glistman" %% "museragent" % "1.0.0"
+  libraryDependencies += "com.github.glistman" %% "museragent" % "1.0.1"
   ```
 * Gradle
   ```
-  compile group: 'com.github.glistman', name: 'museragent', version: '1.0.0'
+  compile group: 'com.github.glistman', name: 'museragent', version: '1.0.1'
   ```
 * Maven
   ```xml
   <dependency>
     <groupId>com.github.glistman</groupId>
     <artifactId>museragent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </dependency>
   ```
 ## Usage

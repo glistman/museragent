@@ -34,8 +34,8 @@ public class UserAgentParser {
             String device = deviceDataMatcher.group("device");
             String type = deviceDataMatcher.group("type");
             userAgent = new UserAgent(
-                    deviceDataMatcher.group("os").trim(),
-                    deviceDataMatcher.group("osVersion").trim(),
+                    deviceDataMatcher.group("os"),
+                    deviceDataMatcher.group("osVersion"),
                     parseDeviceManufacturer(device, type),
                     parseDevice(device, type),
                     userAgentRaw);

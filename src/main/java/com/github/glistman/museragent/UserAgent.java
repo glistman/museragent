@@ -15,10 +15,10 @@ public class UserAgent {
     private final String userAgentRaw;
 
     UserAgent(String operatingSystem, String operatingSystemVersion, String deviceVendor, String deviceModel, String userAgentRaw) {
-        this.operatingSystem = operatingSystem;
-        this.operatingSystemVersion = operatingSystemVersion;
+        this.operatingSystem = trim(operatingSystem);
+        this.operatingSystemVersion = trim(operatingSystemVersion);
         this.deviceVendor = deviceVendor;
-        this.deviceModel = deviceModel;
+        this.deviceModel = trim(deviceModel);
         this.userAgentRaw = userAgentRaw;
         this.mobile = true;
     }
@@ -30,6 +30,10 @@ public class UserAgent {
         this.deviceModel = null;
         this.userAgentRaw = userAgentRaw;
         this.mobile = false;
+    }
+
+    private String trim(String string) {
+        return (string == null) ? null : string.trim();
     }
 
     public String getOperatingSystem() {
