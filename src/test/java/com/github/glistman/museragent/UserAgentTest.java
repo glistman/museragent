@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserAgentTest {
 
@@ -19,7 +20,7 @@ public class UserAgentTest {
             return userAgentObject.isMobile();
         });
 
-        assertEquals(true, areMobiles);
+        assertTrue(areMobiles);
     }
 
     @Test
@@ -32,7 +33,25 @@ public class UserAgentTest {
             return userAgentObject.isMobile();
         });
 
-        assertEquals(true, areMobiles);
+        assertTrue(areMobiles);
+    }
+
+    @Test
+    public void parseIOSOs() {
+        String userAgentRaw = "App/1 (iPhone; iOS 9.0; Scale/1.0)";
+        UserAgentParser userAgentParser = new UserAgentParser();
+        UserAgent userAgent = userAgentParser.parse(userAgentRaw);
+        assertEquals(userAgent.getOperatingSystem(), "iOS");
+        assertEquals(userAgent.getOperatingSystemVersion(), "9.0");
+    }
+
+    @Test
+    public void parseIPhoneOS() {
+        String userAgentRaw = "App/1 (iPhone 6s; iPhone OS/9.3.3; CFNetwork/1.0.0; Darwin/15.6.0)";
+        UserAgentParser userAgentParser = new UserAgentParser();
+        UserAgent userAgent = userAgentParser.parse(userAgentRaw);
+        assertEquals(userAgent.getOperatingSystem(), "iPhone OS");
+        assertEquals(userAgent.getOperatingSystemVersion(), "9.3.3");
     }
 
 }

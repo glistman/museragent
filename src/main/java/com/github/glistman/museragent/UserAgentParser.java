@@ -7,7 +7,7 @@ public class UserAgentParser {
 
     private final Pattern deviceInformationPattern = Pattern.compile("^(?:\\w+)(/[\\w\\.]+)?\\s\\((?<deviceData>.*?)\\).*");
 
-    private final static Pattern deviceDataPattern = Pattern.compile("^(?<type>[^;]*)\\s*(?:;\\s*U)?;(?:(?<os>[^;\\d]+)(?<osVersion>\\d+(?:[._]\\d+)*)?);(?<device>[^;]+)");
+    private final static Pattern deviceDataPattern = Pattern.compile("^(?<type>[^;]*)\\s*(?:;\\s*U)?;(?:(?<os>[^;\\d/]+)/?(?<osVersion>\\d+(?:[._]\\d+)*)?);(?<device>[^;]+)");
 
     private final Pattern applePattern = Pattern.compile("(iphone|ipad|macintosh)", Pattern.CASE_INSENSITIVE);
 

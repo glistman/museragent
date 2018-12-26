@@ -7,18 +7,18 @@ To get started, you can add museragent as a dependency in your project:
 
 * sbt
   ```scala
-  libraryDependencies += "com.github.glistman" %% "museragent" % "1.0.1"
+  libraryDependencies += "com.github.glistman" % "museragent" % "1.0.2"
   ```
 * Gradle
   ```
-  compile group: 'com.github.glistman', name: 'museragent', version: '1.0.1'
+  compile group: 'com.github.glistman', name: 'museragent', version: '1.0.2'
   ```
 * Maven
   ```xml
   <dependency>
     <groupId>com.github.glistman</groupId>
     <artifactId>museragent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
   </dependency>
   ```
 ## Usage
